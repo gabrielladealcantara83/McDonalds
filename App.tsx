@@ -3,6 +3,8 @@ import {
   SafeAreaView, StatusBar
 } from 'react-native';
 
+import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
+
 export default function App() {
   return (
     <SafeAreaView>
@@ -17,6 +19,26 @@ export default function App() {
           <Text>Escolha como prefere aproveitar sua refeiçaõ. Estamos aqui para
             oferecer praticidade e sabor em cada detalhe!
           </Text>
+        </View>
+        <View>
+          <TouchableOpacity>
+            <View>
+              <MaterialCommunityIcons
+              name="hamburger"
+              />
+            </View>
+            <View>
+              <Text>Para comer aqui!</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View>
+              <Feather name="shopping-bag" />
+            </View>
+            <View>
+              <Text>Para levar</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
