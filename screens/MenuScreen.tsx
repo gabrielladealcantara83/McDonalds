@@ -1,52 +1,51 @@
 import { useState } from "react";
-import{
-    View,
+import { View,
     Text,
     Image,
-    ScrollView, // Permite Rolar a tela
+    ScrollView,
     StyleSheet,
     TouchableOpacity,
     StatusBar
-} from 'react-native';
-import { Ionicons, Feather } from "@expo/vector-icons";
+ } from "react-native";
+import { Ionicons, Feather } from '@expo/vector-icons';
  
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from "./HomeScreen";
  
-type Props = NativeStackScreenProps<RootStackParamList, "Menu">
+type Props = NativeStackScreenProps<RootStackParamList, 'Menu'>;
  
 const combos = [
     {
-        id: 1,
+        id: '1',
         name: 'McOferta Média Big Mac Duplo',
-        description: 'Quatro hambúrgueres (100% carne bovina), alface americana...',
-        price: '39.90',
+        description: 'Quatro hambúrgueres (100% carne bovina), alface americana',
+        price: "R$ 39,90",
         image: require('../images/combo-big-mac-duplo.png'),
     },
     {
-        id: 2,  
+        id: '2',
         name: 'Novo Brabo Melt Onion Rings',
-        description: 'Dois hambugúrgueres de carne 100% bovina, méquinese, a exclu...',
-        price: 'R$ 41,50',
-        image: require('../images/combo-brabo-melt-onion-rings.png'),
+        description: 'Dois hambúrgueres de carne 100% bovina, méquinese, a exclu...',
+        price: "R$ 41,50",
+        image: require('../images/novo-brabo-melt-onion-rings.png'),
     },
     {
-        id: 3,
+        id: '3',
         name: 'McCrispy Chicken Elite',
         description: 'Composto por pão tipo brioche com batata, molho Honey&Fire, ...',
-        price: 'R$ 39,20',
-        image: require('../images/combo-mccrispy-elite.png'),
+        price: "R$ 36,20",
+        image: require('../images/combo-mccrispy-chicken-elitex.png'),
     },
     {
-        id: 4,
+        id: '4',
         name: 'Duplo Cheddar McMelt',
-        description: 'Dois hambúrgueres (100% carne bovina), molho lácteo com queij...',
-        price: 'R$ 36,20',
+        description: 'Dois hambúrgueres (100% carne bovina), molho lácteo com queijo...',
+        price: "R$ 36,20",
         image: require('../images/combo-duplo-cheddar-mcmelt.png'),
     },
 ];
  
-const categories = ['Combos', 'Lanches', 'Fritas', 'Bebidas'];
+const categories = ['Combos', 'Lanches', 'Fritas', 'Bebidas', 'Sobremesas'];
  
 export default function MenuScreen({ navigation }: Props) {
     const [activeCategory, setActiveCategory] = useState<string>('Combos');
@@ -54,15 +53,15 @@ export default function MenuScreen({ navigation }: Props) {
         <View style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={"#000000"} />
             <ScrollView
-                style={styles.scroll}
+               style={styles.scroll}
                 contentContainerStyle={styles.scrollContent}
-                showsVerticalScrollIndicator={false}
-                >
-                    <View style={styles.headerImageWrapper}>
+                showsVerticalScrollIndicator={false}>
+               
+                <View style={styles.headerImageWrapper}>
                     <Image
-                        source={require('../images/restaurant.png')}
-                        style={styles.headerImage}
-                        resizeMode="cover"
+                    source={require('../images/restaurante.png')}
+                    style={styles.headerImage}
+                    resizeMode="cover"
                     />
                     <TouchableOpacity
                     style={[styles.headerButton, styles.headerButtonLeft]}
@@ -71,23 +70,73 @@ export default function MenuScreen({ navigation }: Props) {
                     >
                         <Ionicons name="chevron-back" size={22} color={'#000000'} />
                     </TouchableOpacity>
+,
                     <TouchableOpacity
-                    style={[styles.headerButton, styles.headerButtonRight]}
-                    activeOpacity={0.8}
-                    onPress={() => {}}
-                    >
+                        style={[styles.headerButton, styles.headerButtonRight]}
+                        activeOpacity={0.8}
+                        onPress={() => {}}
+                        >
                         <Feather name="file-text" size={20} color={'#000000'} />
                     </TouchableOpacity>
+                </View>
+                <View style={styles.infoCard}>
+                    <View style={styles.infoTopRow}>
+                        <Image
+                        source={require('../images/logo.png')}
+                        style={styles.infoLogo}
+                        resizeMode="contain"
+                        />
+ 
+                        <View style={styles.infoTexts}>
+                            <Text style={styles.brandName}>McDonald's</Text>
+                            <Text style={styles.brandSubtitle}>O melhor fast food do mundo
+ 
+                            </Text>
+                        </View>
                     </View>
+                    <View style={styles.statusRow}>
+                        <Feather name="clock" size={14} color={'#2baa3b'} />
+                        <Text style={styles.statusText}>Aberto!</Text>
+                    </View>
+                    <ScrollView
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={styles.categoriesRow}
+                    >
+                        {categories.map((category) => {
+                            const isActive = category === activeCategory;
+                            return (
+                                <TouchableOpacity
+                                    key={category}
+                                    activeOpacity={0.8}
+                                    onPress={() => setActiveCategory(category)}
+                                    style={[
+                                        styles.categoryPill,
+                                        isActive && styles.categoryPillActives
+                                    ]}
+                                    >
+                                        <Text style={[
+                                            styles.categoryText,
+                                            isActive && styles.categoryTextActive
+                                        ]}
+                                        >
+                                            {category}</Text>
+                                   
+                                </TouchableOpacity>
+                            );
+                        })}
+                    </ScrollView>
+                    <Text style={styles.SectionTitle}>Combos</Text>
+                </View>
             </ScrollView>
-
         </View>
-    );
+ 
+      );
 }
  
 const styles = StyleSheet.create({
- container: {
-   
+    container: {
+ 
     },
     scroll: {
  
@@ -104,7 +153,10 @@ const styles = StyleSheet.create({
     headerButton: {
  
     },
-    info: {
+    headerButtonLeft: {
+ 
+    },
+    headerButtonRight: {
  
     },
     infoCard: {
@@ -119,10 +171,10 @@ const styles = StyleSheet.create({
     infoTexts: {
  
     },
-    brandName: {
+    infoTitle: {
  
     },
-    brandSubtitle: {
+    infoSubtitle: {
  
     },
     statusRow: {
@@ -146,13 +198,9 @@ const styles = StyleSheet.create({
     categoryTextActive: {
  
     },
-    sectionTitle: {
+    SectionTitle: {
  
     },
-    comboCard: {
-       
-    },
- 
     productRow: {
  
     },
@@ -166,13 +214,18 @@ const styles = StyleSheet.create({
  
     },
     productDescription: {
+ 
+    },
+    productPrice: {
+ 
+    },
+    productImage: {
        
     },
-    headerButtonLeft: {
- 
-    },
-    headerButtonRight: {
+    brandSubtitle: {
 
     },
-})
- 
+    brandName: {
+
+    },
+});
