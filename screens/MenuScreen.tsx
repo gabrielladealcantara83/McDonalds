@@ -127,6 +127,32 @@ export default function MenuScreen({ navigation }: Props) {
                         })}
                     </ScrollView>
                     <Text style={styles.SectionTitle}>Combos</Text>
+                    {combos.map((combo, index) => (
+                        <TouchableOpacity
+                        key={combo.id}
+                        style={[
+                            styles.productRow,
+                            index > 0 && styles.productRowDivider,
+                        ]}
+                        activeOpacity={0.85}
+                        onPress={() => {
+
+                        }}
+                        >
+                            <View style={styles.productInfo}>
+                                <Text style={styles.productName}></Text>
+                                <Text style={styles.productDescription} numberOfLines={2}>
+                                    {combo.description}
+                                </Text>
+                                <Text style={styles.productPrice}>{combo.price}</Text>
+                            </View>
+                             <Image
+                             source={combo.image}
+                             style={styles.productImage}
+                             resizeMode="contain"
+                             />
+                        </TouchableOpacity>
+                    ))}
                 </View>
             </ScrollView>
         </View>
