@@ -162,30 +162,49 @@ export default function MenuScreen({ navigation }: Props) {
  
 const styles = StyleSheet.create({
     container: {
- 
+        flex: 1,
+ backgroundColor: '#F2F2F2'
     },
     scroll: {
- 
+        flex: 1
     },
     scrollContent: {
- 
+        paddingBottom: 32
     },
     headerImageWrapper: {
- 
+        width: '100%',
+        height: 240,
+        position: 'relative',
+        backgroundColor: '#000'
     },
     headerImage: {
- 
+        width: '100%',
+        height: '100%',
     },
     headerButton: {
- 
+        position: 'absolute',
+        top: 48,
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // Sombra em IOS e Android
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+        elevation: 4,
     },
     headerButtonLeft: {
- 
+        left: 16,
     },
     headerButtonRight: {
- 
+        right: 16,
     },
     infoCard: {
+        
  
     },
     infoTopRow: {
