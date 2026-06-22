@@ -1,48 +1,105 @@
 import { useState } from "react";
-import { View,
+import {
+    View,
     Text,
     Image,
     ScrollView,
     StyleSheet,
     TouchableOpacity,
     StatusBar
- } from "react-native";
+} from "react-native";
 import { Ionicons, Feather } from '@expo/vector-icons';
  
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from "./HomeScreen";
  
-type Props = NativeStackScreenProps<RootStackParamList, 'Menu'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Menu'>
  
-const combos = [
+type Product = {
+    id: string;
+    name: string;
+    description: string;
+    price: string;
+    image: number;
+}
+ 
+const combos: Product[] = [
     {
-        id: '1',
+        id: 'combo-1',
         name: 'McOferta Média Big Mac Duplo',
         description: 'Quatro hambúrgueres (100% carne bovina), alface americana',
         price: "R$ 39,90",
         image: require('../images/combo-big-mac-duplo.png'),
     },
     {
-        id: '2',
+        id: 'combo-2',
         name: 'Novo Brabo Melt Onion Rings',
         description: 'Dois hambúrgueres de carne 100% bovina, méquinese, a exclu...',
         price: "R$ 41,50",
-        image: require('../images/novo-brabo-melt-onion-rings.png'),
+        image: require('../images/combo-brabo-melt-onion-rings.png'),
     },
     {
-        id: '3',
+        id: 'combo-3',
         name: 'McCrispy Chicken Elite',
         description: 'Composto por pão tipo brioche com batata, molho Honey&Fire, ...',
         price: "R$ 36,20",
-        image: require('../images/combo-mccrispy-chicken-elitex.png'),
+        image: require('../images/combo-mcrispy-elite.png'),
     },
     {
-        id: '4',
+        id: 'combo-4',
         name: 'Duplo Cheddar McMelt',
         description: 'Dois hambúrgueres (100% carne bovina), molho lácteo com queijo...',
         price: "R$ 36,20",
         image: require('../images/combo-duplo-cheddar-mcmelt.png'),
     },
+];
+ 
+const lanches: Product[] = [
+    {
+        id: 'lanche-1',
+    name: 'Big Mac',
+    description: 'Dois hambúrgueres (100% carne bovina), alface americana, queijo, picles, cebola e molho especial, no pão com gergelim.',
+    price: "R$ 39,90",
+    image: require('../images/lanche-big-mac.png'),
+    },
+    {
+        id: 'lanche-2',
+        name: 'Duplo Quarterão',
+        description: 'Dois hambúrgueres de carne 100% bovina, méquinese, a exclu...',
+        price: 'R$ 41,50',
+        image: require('../images/lanche-duplo-quarterao.png')
+    },
+    {
+        id: 'lanche-3',
+        name: 'McMelt',
+        description: 'Composto por pão tipo brioche com batata, molho Honey&Fire, ...',
+        price: 'R$ 39,90',
+        image: require('../images/lanche-mcmelt.png'),
+    },
+    {
+        id:'lanche-4',
+        name: 'McNífico Bacon',
+        description: 'Dois hambúgueres (100% carne bovina), molho lácteo com queij...',
+        price: 'R$ 36,20',
+        image: require('../images/fritas-grande.png'),
+    },
+];
+    const fritas: Product[] = [{
+        id: 'fritas-1',
+        name: 'Fritas Grande',
+        description: 'Batatas fritas crocantes e sequinhas. Vem bastante!',
+        price: 'R$ 10,90',
+        image: require('../images/fritas-grande.png'),
+    },
+    {
+        id: 'fritas-2',
+        name: 'Fritas Média',
+        description: 'Batatas fritas crocantes e sequinhas. Vem bastante!',
+        price: 'R$ 9,90',
+        image: require('../images/fritas-media.png'),
+    },
+
+
 ];
  
 const categories = ['Combos', 'Lanches', 'Fritas', 'Bebidas', 'Sobremesas'];
@@ -53,44 +110,43 @@ export default function MenuScreen({ navigation }: Props) {
         <View style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={"#000000"} />
             <ScrollView
-               style={styles.scroll}
+                style={styles.scroll}
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={false}>
-               
+ 
                 <View style={styles.headerImageWrapper}>
                     <Image
-                    source={require('../images/restaurante.png')}
-                    style={styles.headerImage}
-                    resizeMode="cover"
+                        source={require('../images/restaurante.png')}
+                        style={styles.headerImage}
+                        resizeMode="cover"
                     />
                     <TouchableOpacity
-                    style={[styles.headerButton, styles.headerButtonLeft]}
-                    activeOpacity={0.8}
-                    onPress={() => navigation.goBack}
+                        style={[styles.headerButton, styles.headerButtonLeft]}
+                        activeOpacity={0.8}
+                        onPress={() => navigation.goBack}
                     >
                         <Ionicons name="chevron-back" size={22} color={'#000000'} />
                     </TouchableOpacity>
-,
+                    ,
                     <TouchableOpacity
                         style={[styles.headerButton, styles.headerButtonRight]}
                         activeOpacity={0.8}
-                        onPress={() => {}}
-                        >
+                        onPress={() => { }}
+                    >
                         <Feather name="file-text" size={20} color={'#000000'} />
                     </TouchableOpacity>
                 </View>
                 <View style={styles.infoCard}>
                     <View style={styles.infoTopRow}>
                         <Image
-                        source={require('../images/logo.png')}
-                        style={styles.infoLogo}
-                        resizeMode="contain"
+                            source={require('../images/logo.png')}
+                            style={styles.infoLogo}
+                            resizeMode="contain"
                         />
  
                         <View style={styles.infoTexts}>
                             <Text style={styles.brandName}>McDonald's</Text>
                             <Text style={styles.brandSubtitle}>O melhor fast food do mundo
- 
                             </Text>
                         </View>
                     </View>
@@ -114,56 +170,56 @@ export default function MenuScreen({ navigation }: Props) {
                                         styles.categoryPill,
                                         isActive && styles.categoryPillActives
                                     ]}
+                                >
+                                    <Text style={[
+                                        styles.categoryText,
+                                        isActive && styles.categoryTextActive
+                                    ]}
                                     >
-                                        <Text style={[
-                                            styles.categoryText,
-                                            isActive && styles.categoryTextActive
-                                        ]}
-                                        >
-                                            {category}</Text>
-                                   
+                                        {category}</Text>
+ 
                                 </TouchableOpacity>
                             );
                         })}
                     </ScrollView>
-                    <Text style={styles.SectionTitle}>Combos</Text>
+                    <Text style={styles.sectionTitle}>Combos</Text>
                     {combos.map((combo, index) => (
                         <TouchableOpacity
-                        key={combo.id}
-                        style={[
-                            styles.productRow,
-                            index > 0 && styles.productRowDivider,
-                        ]}
-                        activeOpacity={0.85}
-                        onPress={() => {
-
-                        }}
+                            key={combo.id}
+                            style={[
+                                styles.productRow,
+                                index > 0 && styles.productRowDivider,
+                            ]}
+                            activeOpacity={0.85}
+                            onPress={() => {
+ 
+                            }}
                         >
                             <View style={styles.productInfo}>
-                                <Text style={styles.productName}></Text>
+                                <Text style={styles.productName}>{combo.name}</Text>
                                 <Text style={styles.productDescription} numberOfLines={2}>
                                     {combo.description}
                                 </Text>
                                 <Text style={styles.productPrice}>{combo.price}</Text>
                             </View>
-                             <Image
-                             source={combo.image}
-                             style={styles.productImage}
-                             resizeMode="contain"
-                             />
+                            <Image
+                                source={combo.image}
+                                style={styles.productImage}
+                                resizeMode="contain"
+                            />
                         </TouchableOpacity>
                     ))}
                 </View>
             </ScrollView>
         </View>
  
-      );
+    );
 }
  
 const styles = StyleSheet.create({
     container: {
         flex: 1,
- backgroundColor: '#F2F2F2'
+        backgroundColor: '#F2F2F2'
     },
     scroll: {
         flex: 1
@@ -204,73 +260,109 @@ const styles = StyleSheet.create({
         right: 16,
     },
     infoCard: {
-        
- 
+        backgroundColor: '#FFFFFF',
+        marginTop: -24,
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
+        paddingHorizontal: 20,
+        paddingTop: 20,
+        paddingBottom: 16,
     },
     infoTopRow: {
- 
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
     },
     infoLogo: {
- 
+        width: 48,
+        height: 48,
+        borderRadius: 8,
     },
     infoTexts: {
- 
-    },
-    infoTitle: {
- 
-    },
-    infoSubtitle: {
- 
+        flex: 1,
     },
     statusRow: {
- 
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        marginTop: 12,
     },
     statusText: {
- 
+        color: '#2BAA3B',
+        fontSize: 13,
+        fontWeight: '600',
     },
     categoriesRow: {
- 
+        flexDirection: 'row',
+        gap: 10,
+        paddingVertical: 18,
+        paddingRight: 12,
     },
     categoryPill: {
- 
+        paddingHorizontal: 18,
+        paddingVertical: 9,
+        borderRadius: 22,
+        backgroundColor: '#F2F2F2',
     },
     categoryPillActives: {
- 
+        backgroundColor: '#FFC72C',
     },
     categoryText: {
- 
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#000000'
     },
     categoryTextActive: {
- 
+        color: '#000000'
     },
-    SectionTitle: {
- 
+    sectionTitle: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#000000',
+        marginBottom: 8,
     },
     productRow: {
- 
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 14,
+        gap: 12
     },
     productRowDivider: {
- 
+        borderTopWidth: 1,
+        borderTopColor: '#EEEEEE',
     },
     productInfo: {
- 
+        flex: 1,
     },
     productName: {
- 
+        fontSize: 15,
+        fontWeight: '700',
+        color: '#000000',
+        marginBottom: 4
     },
     productDescription: {
- 
+        fontSize: 13,
+        color: '#707070',
+        lineHeight: 18,
     },
     productPrice: {
- 
+        fontSize: 14,
+        fontWeight: '700',
+        color: '#000000'
     },
     productImage: {
-       
+        width: 90,
+        height: 70,
     },
     brandSubtitle: {
-
+        fontSize: 13,
+        color: '#707070',
+        marginTop: 2,
     },
     brandName: {
-
+        fontSize: 18,
+        color: "#000000",
+        fontWeight: 13,
     },
 });
+ 
