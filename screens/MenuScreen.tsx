@@ -129,7 +129,7 @@ const bebidas: Product[] = [
     name: 'Fanta Laranja',
     description: 'Fanta Laranja gelada para acompanhar seu lanche.',
     price: 'R$ 5,90',
-    image: require('../image/fanta-laranja.png'),
+    image: require('../images/fanta-laranja.png'),
 },
 {
     id: 'bebida-3',
