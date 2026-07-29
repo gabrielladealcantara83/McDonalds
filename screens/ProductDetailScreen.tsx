@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+ 
 import {
     View,
     Text,
@@ -10,23 +10,23 @@ import {
     SafeAreaView,
     StatusBar,
 } from 'react-native';
-
+ 
 import { Ionicons, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-
+ 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "./HomeScreen";
-
+ 
 import { getProdutoById } from "../data/produtos";
-
+ 
 type Props = NativeStackScreenProps<RootStackParamList, 'ProductDetail'>;
-
+ 
 export default function ProductDetailScreen({ navigation, route }: Props) {
     const { productId } = route.params;
     const produto = getProdutoById(productId);
     const [quantidade, setQuantidade] = useState(1);
     const insets = useSafeAreaInsets();
-
+ 
     if (!produto) {
         return (
             <SafeAreaView style={styles.container}>
@@ -37,7 +37,7 @@ export default function ProductDetailScreen({ navigation, route }: Props) {
             </SafeAreaView>
         );
     }
-
+ 
     return (
         <View style={styles.container}>
             <StatusBar barStyle={"dark-content"} backgroundColor={"#FFFFFF"} />
@@ -54,7 +54,7 @@ export default function ProductDetailScreen({ navigation, route }: Props) {
             >
                 <Feather name="file-text" size={20} color={"#000000"} />
             </TouchableOpacity>
-
+ 
             <ScrollView
                 style={styles.scroll}
                 contentContainerStyle={styles.scrollContent}
@@ -74,11 +74,55 @@ export default function ProductDetailScreen({ navigation, route }: Props) {
                     <Text style={styles.brandName}>McDonald's</Text>
                 </View>
                 <Text style={styles.productName}>{produto.name}</Text>
+               
+               <View style={styles.priceRow}>
+                    <Text style={styles.price}> {produto.price}</Text>
+                    <View style={styles.quantitySelector}>
+                         <TouchableOpacity
+                               style={styles.quantityButtonMinus}
+                               activeOpacity={0.8}
+                               onPress={() => {
+                                   if (quantidade - 1) setQuantidade(quantidade - 1)
+                                   
+                               }}
+                         >
+                              <Ionicons name="chevron-back" size={20} color={"#000000"} />
+                         </TouchableOpacity>
+                       
+                        <Text style={styles.quantityText}>{quantidade}</Text>
+ 
+                        <TouchableOpacity
+                        style={styles.quantityButtonPlus}
+                        activeOpacity={0.8}
+                        onPress={() => setQuantidade(quantidade + 1)}
+                        >
+                            <Ionicons name="chevron-forward" size={18} color={"#FFFFFF"} />
+                        </TouchableOpacity>
+                    </View>
+               </View>
+                <Text style={styles.sectionTitle}>Sobre</Text>
+                <Text style={styles.aboutText}>{produto.about}</Text>
+               
+                <View style={styles.ingredientsHeader}>
+                     <MaterialCommunityIcons
+                     name="chef-hat"
+                     size={20}
+                     color={"#000000"}
+                     />
+                     <Text style={styles.sectionTitle}>Ingredientes</Text>
+                </View>
+                {produto.ingredients.map((ingrediente, index) => (
+                    <View key={index} style={styles.ingredientRow}>
+                        <Text style={styles.bullet}>•</Text>
+                        <Text style={styles.ingredientText}>{ingrediente}</Text>
+                    </View>
+               ))}
+               <View style={styles.bottomSpacer} />
             </ScrollView>
-        </View>
+       </View>
     )
 }
-
+ 
 const styles = StyleSheet.create({
     container: {
     },
@@ -139,3 +183,5 @@ const styles = StyleSheet.create({
     backLink: {
     },
 });
+ 
+ 
