@@ -102,7 +102,7 @@ export const lanches: Product[] = [
         description: 'Quatro hambúrgueres (100% carne bovina), alface americana...',
         about:
             'Dois hambúrgueres (100% carne bovina), alface americana, queijo fatiado sabor cheddar, molho especial, cebola, picles e pão com gergilim.',
-        price: 'R$ 39,90',
+        price: 'R$ 29,90',
         image: require('../images/lanche-big-mac.png'),
         ingredients: [
             'Pão com gergilim',
@@ -120,7 +120,7 @@ export const lanches: Product[] = [
         description: 'Dois hambúrgueres de carne 100% bovina, méquinese, a exclu...',
         about:
             'Dois hambúrgueres de carne 100% bovina, méquinese, cebola, picles, queijo cheddar, pão com gergilim.',
-        price: 'R$ 41,50',
+        price: 'R$ 21,50',
         image: require('../images/lanche-duplo-quarterao.png'),
         ingredients: [
             'Pão com gergilim',
@@ -137,7 +137,7 @@ export const lanches: Product[] = [
         description: 'Composto por pão tipo brioche com batata, molho Honey&Fire, ...',
         about:
             'Hambúrguer de carne 100% bovina, molho lácteo com queijo tipo cheddar, cebola ao molho shoyu e pão escuro com gergelim.',
-        price: 'R$ 39,90',
+        price: 'R$ 25,90',
         image: require('../images/lanche-mcmelt.png'),
         ingredients: [
             'Pão escuro com gergelim',
@@ -152,7 +152,7 @@ export const lanches: Product[] = [
         description: 'Dois hambúrgueres (100% carne bovina), molho lácteo com queij...',
         about:
             'Dois hambúrgueres (100% carne bovina), molho lácteo com queijo tipo cheddar, bacon, cebola, tomate, alface e pão com gergilim.',
-        price: 'R$ 36,20',
+        price: 'R$ 29,50',
         image: require('../images/lanche-mcnifico-bacon.png'),
         ingredients: [
             'Pão com gergilim',

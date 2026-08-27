@@ -18,6 +18,7 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "./HomeScreen";
  
 import { getProdutoById } from "../data/produtos";
+import { useCart } from "../context/CartContext";
  
 type Props = NativeStackScreenProps<RootStackParamList, 'ProductDetail'>;
  
@@ -26,6 +27,7 @@ export default function ProductDetailScreen({ navigation, route }: Props) {
     const produto = getProdutoById(productId);
     const [quantidade, setQuantidade] = useState(1);
     const insets = useSafeAreaInsets();
+    const { addItem } = useCart();
  
     if (!produto) {
         return (
@@ -50,9 +52,9 @@ export default function ProductDetailScreen({ navigation, route }: Props) {
             <TouchableOpacity
                 style={[styles.headerButton, styles.headerButtonRight]}
                 activeOpacity={0.8}
-                onPress={() => { }}
+                onPress={() => navigation.navigate('Cart')}
             >
-                <Feather name="file-text" size={20} color={"#000000"} />
+                <Feather name="shopping-bag" size={20} color={"#000000"} />
             </TouchableOpacity>
  
             <ScrollView
@@ -82,7 +84,7 @@ export default function ProductDetailScreen({ navigation, route }: Props) {
                                style={styles.quantityButtonMinus}
                                activeOpacity={0.8}
                                onPress={() => {
-                                   if (quantidade - 1) setQuantidade(quantidade - 1)
+                                   if (quantidade > 1) setQuantidade(quantidade - 1)
                                    
                                }}
                          >
@@ -128,7 +130,10 @@ export default function ProductDetailScreen({ navigation, route }: Props) {
         <TouchableOpacity
         style={styles.addButton}
         activeOpacity={0.85}
-        onPress={() => {}}
+        onPress={() => {
+            addItem(produto, quantidade);
+            navigation.navigate('Cart');
+        }}
         >
             <Text style={styles.addButtonText}>Adicionar à sacola</Text>
         </TouchableOpacity>

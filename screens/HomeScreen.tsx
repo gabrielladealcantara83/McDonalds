@@ -17,6 +17,9 @@ export type RootStackParamList = {
     Home: undefined;
     Menu: undefined;
     ProductDetail: {productId: string};
+    Cart: undefined;
+    Order: undefined;
+    OrderFinished: undefined;
 };
  
  
@@ -70,7 +73,7 @@ export default function HomeScreen({ navigation }: Props) {
                     <TouchableOpacity
                         style={styles.card}
                         activeOpacity={0.85}
-                        onPress={() => navigation.navigate('Menu')}
+                        onPress={() => navigation.navigate('Cart')}
                     >
                         <View style={styles.iconCircle}>
                             <Feather name="shopping-bag" size={34} color="#000000" />
